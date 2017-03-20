@@ -14,3 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+  function loss() {
+    $('h2').text("Poop")
+  }
+  setTimeout(loss, 5000)
+
+
