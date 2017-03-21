@@ -3,6 +3,7 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
 <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<div id="container2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
 
 </head>
 <body>
@@ -49,28 +50,73 @@ Highcharts.chart('container', {
         colorByPoint: true,
         data: [{
             name: '<%=@category1[:category]%>',
-            y: <%=@category1[:amount]%>
+            y: <%=@category1[:amount_spent]%>
         }, {
             name: '<%=@category2[:category]%>',
-            y: <%=@category2[:amount]%>
+            y: <%=@category2[:amount_spent]%>
         }, {
             name: '<%=@category3[:category]%>',
-            y: <%=@category3[:amount]%>,
+            y: <%=@category3[:amount_spent]%>,
             sliced: true,
             selected: true
         }, {
             name: '<%=@category4[:category]%>',
-            y: <%=@category4[:amount]%>
+            y: <%=@category4[:amount_spent]%>
         }, {
             name: '<%=@category5[:category]%>',
-            y: <%=@category5[:amount]%>
+            y: <%=@category5[:amount_spent]%>
         }, {
             name: '<%=@category_others[:category]%>',
-            y: <%=@category_others[:amount]%>
+            y: <%=@category_others[:amount_spent]%>
         }]
     }]
 });
 </script>
+
+
+
+
+    <script type="text/javascript">
+
+Highcharts.chart('container2', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: 'Projected vs Actual'
+    },
+    xAxis: {
+        categories: ['<%=@category1[:category]%>', '<%=@category2[:category]%>', '<%=@category3[:category]%>', '<%=@category4[:category]%>', '<%=@category5[:category]%>', '<%=@category_others[:category]%>']
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Dollars'
+        }
+    },
+    legend: {
+        reversed: true
+    },
+    plotOptions: {
+        series: {
+            stacking: 'normal'
+        }
+    },
+    series: [{
+        name: 'Overspending',
+        color: 'Red',
+        data: [<%=@category1[:over_budget]%>, <%=@category2[:over_budget]%>, <%=@category3[:over_budget]%>, <%=@category4[:over_budget]%>, <%=@category5[:over_budget]%>, <%=@category_others[:over_budget]%>]
+    }, {
+        name: 'Left Over',
+        color: 'Green',
+        data: [<%=@category1[:under_budget]%>, <%=@category2[:under_budget]%>, <%=@category3[:under_budget]%>, <%=@category4[:under_budget]%>, <%=@category5[:under_budget]%>, <%=@category_others[:under_budget]%>]
+    }, {
+        name: 'Spent Within Budget',
+        color: 'Teal',
+        data: [<%=@category1[:amount_spent]%>, <%=@category2[:amount_spent]%>, <%=@category3[:amount_spent]%>, <%=@category4[:amount_spent]%>, <%=@category5[:amount_spent]%>, <%=@category_others[:amount_spent]%>]
+    }]
+});
+    </script>
 
 
 
