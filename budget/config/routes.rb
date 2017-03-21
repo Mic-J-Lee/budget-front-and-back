@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-  get 'budget_tables/new'
-
-  get 'items/new'
-
-  get 'categories/new'
-
-  get 'users/new'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :dashboard
+  root to: "home#index"
+  get    '/register',  to: 'user#new'
+  get    '/login',   to: 'home#new'
+  post   '/login',   to: 'home#create'
+  delete '/logout',  to: 'home#destroy'
+  resources :users do
+    resources :budgets do
+      resources :items
+    end
+  end
+resources :categories
 end
+
