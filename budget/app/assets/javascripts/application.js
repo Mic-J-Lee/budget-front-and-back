@@ -14,3 +14,31 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+  function loss() {
+    $('h2').text("Poop")
+  }
+  setTimeout(loss, 5000)
+
+  function loss1() {
+    $('h3').text("Poop")
+  }
+  setTimeout(loss1, 9000)
+
+  function loss2() {
+    $('.goal').text("Poop")
+  }
+  setTimeout(loss2, 10000)
+
+  function loss3() {
+    $('.actual').text("Poop")
+  }
+  setTimeout(loss3, 10600)
+
+  function loss4() {
+    $('h1').text("Poop")
+  }
+  setTimeout(loss4, 9300)
+
+
