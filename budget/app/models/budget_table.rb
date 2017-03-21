@@ -1,0 +1,2 @@
+class BudgetTable < ApplicationRecord
+end
