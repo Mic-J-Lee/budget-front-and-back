@@ -1,12 +1,76 @@
+<head>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+</head>
+<body>
+  <div class="body">
+      <h1>Here is your monthly budget:</h1>
+
+  <h2>TESTING TESTING 123</h2>
+  </div>
+</body>
 
 
-<h1><%@budget.each do |item|%>
-    
-    <div class='category'><%=item%></div>
 
-    <%end%>
 
-</h1>
 
-<h2>TESTING TESTING 123</h2>
+<script>
+Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Budget Breakdown:'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Percentage of Total Budget',
+        colorByPoint: true,
+        data: [{
+            name: '<%=@category1[:category]%>',
+            y: <%=@category1[:amount]%>
+        }, {
+            name: '<%=@category2[:category]%>',
+            y: <%=@category2[:amount]%>
+        }, {
+            name: '<%=@category3[:category]%>',
+            y: <%=@category3[:amount]%>,
+            sliced: true,
+            selected: true
+        }, {
+            name: '<%=@category4[:category]%>',
+            y: <%=@category4[:amount]%>
+        }, {
+            name: '<%=@category5[:category]%>',
+            y: <%=@category5[:amount]%>
+        }, {
+            name: '<%=@category_others[:category]%>',
+            y: <%=@category_others[:amount]%>
+        }]
+    }]
+});
+</script>
+
+
 
