@@ -2,11 +2,76 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
-<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-<div id="container2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
 
 </head>
 <body>
+  <div class="col-xs-12">
+  
+  <div class="col-xs-6">
+    <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+  <div class="col-xs-6">
+    <div id="container2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+  </div>  
+  </div>
+  <div class="body">
+      <h1>Here is your monthly budget:</h1>
+
+  <h2>TESTING TESTING 123</h2>
+  </div>
+
+
+  <div class="col-xs-12">
+  
+  <div class="col-xs-6">
+    <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+  <div class="col-xs-6">
+    <div id="container2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+  </div>  
+  </div>
+  <div class="body">
+      <h1>Here is your monthly budget:</h1>
+
+  <h2>TESTING TESTING 123</h2>
+  </div>
+  <div class="col-xs-12">
+  
+  <div class="col-xs-6">
+    <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+  <div class="col-xs-6">
+    <div id="container2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+  </div>  
+  </div>
+  <div class="body">
+      <h1>Here is your monthly budget:</h1>
+
+  <h2>TESTING TESTING 123</h2>
+  </div>
+  <div class="col-xs-12">
+  
+  <div class="col-xs-6">
+    <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+  <div class="col-xs-6">
+    <div id="container2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+  </div>  
+  </div>
+  <div class="body">
+      <h1>Here is your monthly budget:</h1>
+
+  <h2>TESTING TESTING 123</h2>
+  </div>
+  <div class="col-xs-12">
+  
+  <div class="col-xs-6">
+    <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+  <div class="col-xs-6">
+    <div id="container2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+  </div>  
+  </div>
   <div class="body">
       <h1>Here is your monthly budget:</h1>
 
@@ -104,15 +169,15 @@ Highcharts.chart('container2', {
     },
     series: [{
         name: 'Overspending',
-        color: 'Red',
+        color: 'red',
         data: [<%=@category1[:over_budget]%>, <%=@category2[:over_budget]%>, <%=@category3[:over_budget]%>, <%=@category4[:over_budget]%>, <%=@category5[:over_budget]%>, <%=@category_others[:over_budget]%>]
     }, {
         name: 'Left Over',
-        color: 'Green',
+        color: 'green',
         data: [<%=@category1[:under_budget]%>, <%=@category2[:under_budget]%>, <%=@category3[:under_budget]%>, <%=@category4[:under_budget]%>, <%=@category5[:under_budget]%>, <%=@category_others[:under_budget]%>]
     }, {
         name: 'Spent Within Budget',
-        color: 'Teal',
+        color: 'lightblue',
         data: [<%=@category1[:amount_spent]%>, <%=@category2[:amount_spent]%>, <%=@category3[:amount_spent]%>, <%=@category4[:amount_spent]%>, <%=@category5[:amount_spent]%>, <%=@category_others[:amount_spent]%>]
     }]
 });
