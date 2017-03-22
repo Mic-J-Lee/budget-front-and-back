@@ -31,9 +31,6 @@ ActiveRecord::Schema.define(version: 20170321221203) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "dashboards", force: :cascade do |t|
-  end
-
   create_table "items", force: :cascade do |t|
     t.text     "name"
     t.float    "amount"
@@ -42,7 +39,7 @@ ActiveRecord::Schema.define(version: 20170321221203) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "emaname"
+    t.string   "name"
     t.string   "email"
     t.string   "password_digest"
     t.datetime "created_at",      null: false
