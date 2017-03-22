@@ -15,7 +15,6 @@
 //= require turbolinks
 //= require_tree .
 
-
   function loss() {
     $('h2').text("Poop")
   }
