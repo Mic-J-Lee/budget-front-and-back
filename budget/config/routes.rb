@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'daniel/index'
-  get 'daniel/login'
-  get 'daniel/register'
-  
   get 'budget_tables/new'
 
   get 'items/new'

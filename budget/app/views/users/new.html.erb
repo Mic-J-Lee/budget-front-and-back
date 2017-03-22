@@ -1,4 +1,3 @@
-<h1>Sign Up</h1>
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
     <div class="error_messages">
@@ -11,18 +10,17 @@
     </div>
   <% end %>
 
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
+  <div class="login-page">
+    <div class="form">
+      <center><h1>Sign Up</h1></center>
+      <br>
+      <%= f.label :email %><br />
+      <%= f.text_field :email %>
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %>
+      <button type = "submit">Sign Up</button>
+      <% end %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions"><%= f.submit "Sign Up" %></div>
-<% end %>
