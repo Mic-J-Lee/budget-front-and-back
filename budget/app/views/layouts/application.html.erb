@@ -3,22 +3,26 @@
   <head>
     <title>Budget</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>      
   </head>
 
   <body>
-    <nav>
-      <div id="user_header">
-        <% if logged_in? %>
-          <%= link_to 'Logout', logout_path %>
-        <% else %>
-          <%= link_to "Sign Up", signup_path %>
-          <%= link_to "Log In", login_path %>        
-        <% end %>
-      </div>
-    </nav>
+    <div class="nav">
+      <nav>
+        <div id="user_header" class="col-xs-12">
+          <% if logged_in? %>
+            <%= link_to 'Logout', logout_path %>
+          <% else %>
+            <%= link_to "Sign Up", signup_path %>
+            <%= link_to "Log In", login_path %>        
+          <% end %>
+        </div>
+      </nav>
+    </div>
     <%= yield %>
   </body>
 </html>
