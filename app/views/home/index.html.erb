@@ -1,0 +1,199 @@
+<head>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+
+</head>
+<body>
+  <h4><%=stringify_month(@income.month)%></h4>
+  <div>
+    <a href="#" class="fade_form">Switch Month</a>
+    <div class="drop_down">
+      <%= render 'switch_month_form' %>
+    </div>
+  </div>
+  <%= form_for @income do |f| %>
+    <%if @income.amount %>
+      <br>
+    <%else%>
+      <div class="login">
+        <div class="form">
+          <center><h1>Please enter your income this month</h1></center>
+          <br>
+          <%= label_tag :amount %><br />
+          <%= text_field_tag :amount, params[:amount] %>
+          <%= hidden_field_tag :month, @month %>
+          <button type = "submit">Submit</button>
+        </div>
+      </div>
+    <%end%>
+  <%end%>
+  <div class="col-xs-12">
+  <div class="col-md-6">
+    <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+  <div class="col-md-6">
+    <div id="container2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+  </div>  
+  </div>
+  <div>
+    <%if @income.amount %>
+      <h3>Your income this month: <%=@income.amount%>.</h3>
+    <%end%>
+  </div>
+
+  <div class="body">
+    <%@budgets.each do |budget|%>
+      <div class="col-xs-3">
+        <h4>
+        Category: <%=budget.category%><br>
+        Budget: <%=budget.target%><br>
+        Actually spent: <%=budget.expenses.sum(:amount) %><br>
+        </h4>
+        <div>
+
+          <a href="#" class="fade_form2">Edit</a>
+          <%= link_to 'Delete', budget, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <div class="drop_down2">
+            <div>
+              <a href="#" class="fade_form">Edit Category</a>
+              <div class="drop_down">
+                <%= render 'drop_down_form', budget: budget %>
+              </div>
+            </div>
+            <br>
+            <div>
+              <a href="#" class="fade_form">Add Expenditure</a>
+              <div class="drop_down">
+                <%= render 'add_expense_form', budget: budget, expense: @expense %>
+              </div>
+            </div>
+            <br>
+            <div>
+              <a href="#" class="fade_form">Edit Expenditures</a>
+              <div class="drop_down">
+                <%= render 'edit_expense_form', budget: budget %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%end%>
+    <div class="col-xs-3">
+      <h4>
+        <a href="#" class="fade_form">Add a category</a>
+      <div class="drop_down">
+        <%= render 'new_budget_form', budget: @budget %>
+      </div>
+      </h4>
+    </div>
+  </div>
+
+</body>
+
+<script>
+
+  function pieChart() {
+      output = []
+      output.push({ name: "<%=@pie_savings[0]%>", y: <%=@pie_savings[1]%>, sliced: true,
+            selected: true, color: '#37d64c' })
+
+      <%@category_target_pie.each do |nested_pair|%>
+        output.push({ name: "<%=nested_pair[0]%>", y: <%=nested_pair[1]%> })
+      <%end%>
+
+
+      return output
+  }
+
+  Highcharts.chart('container', {
+      chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
+      },
+      title: {
+          text: 'Your Target Budget:'
+      },
+      tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+          pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                  enabled: true,
+                  format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                  style: {
+                      color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                  }
+              }
+          }
+      },
+      series: [{
+          name: 'Percentage of Total Budget',
+          colors: ['#f08cf7', '#80ced6', '#f2ae72', '#FFF263', '#6AF9C4', '#a78afc', '#f77b7b', '#ffde7c', '#d28afc', '#B8A9C9', '#8d9db6', '#96897f'],
+          data: pieChart()
+      }]
+  });
+</script>
+
+
+
+
+<script type="text/javascript">
+
+function barChartCategories() {
+    output = []
+
+    <%@categories.each do |word|%>
+      output.push('<%=word%>'.replace(/&quot;/g, '\\"'))
+    <%end%>
+
+    return output
+}
+
+Highcharts.chart('container2', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: 'Your Performance'
+    },
+    xAxis: {
+        categories: barChartCategories()
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Dollars'
+        }
+    },
+    legend: {
+        reversed: true
+    },
+    plotOptions: {
+        series: {
+            stacking: 'normal'
+        }
+    },
+    series: [{
+        name: 'Overspent',
+        color: 'red',
+        data: <%=@over_budget%>
+    }, {
+        name: 'Your Slice',
+        color: '#37d64c',
+        data: <%=@under_budget%>
+    }, {
+        name: 'Spent Within Budget',
+        color: 'lightblue',
+        data: <%=@amount_spent%>
+    }]
+});
+    </script>
+
+
+

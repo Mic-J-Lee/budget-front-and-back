@@ -1,0 +1,3 @@
+<%budget.expenses.each do |expense|%>
+  <%=expense.name%>: <%=expense.amount%> <%=link_to 'Delete', expense, method: :delete %><br>
+<%end%>

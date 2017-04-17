@@ -1,0 +1,5 @@
+<%= form_tag do %>
+  <%= select_month(Date.today) %>
+  <%= select_year(Date.today, start_year: 2010, end_year: Date.today.year ) %>
+  <%= submit_tag %>
+<%end%>
