@@ -28,7 +28,7 @@ jan2016_to_present.each do |month|
   Budget.create(user_id: 1, category: 'Transportation', target: 130, month: month)
   Budget.create(user_id: 1, category: 'Entertainment', target: 420, month: month)
   Budget.create(user_id: 1, category: 'Bills', target: rand(500..600), month: month)
-  Budget.create(user_id: 1, category: 'Savings', target: calculate_savings_target(month) )
+  Budget.create(user_id: 1, category: 'Savings', target: calculate_savings_target(month), month: month )
 end
 
 Budget.all.each do |budget|
