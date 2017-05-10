@@ -223,5 +223,8 @@ header, #content, #middle, #sidebar {
 }
 .login-background {
   background: image-url('slice.png') no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
 }
